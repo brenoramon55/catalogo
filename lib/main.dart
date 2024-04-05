@@ -187,35 +187,99 @@ class _BottomNavBarState extends State<BottomNavBar> {
     });
   },
   children: [
-    Container(
-      width: MediaQuery.of(context).size.width,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: widget.products.map((product) {
-            return Container(
-              margin: EdgeInsets.all(10.0),
-              width: 200.0,
-              height: 200.0,
-              color: Colors.grey,
-              child: Center(
-                child: Text(
-                  product.name,
-                  style: TextStyle(fontSize: 20.0),
-                ),
+    ListView(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Título 1',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-            );
-          }).toList(),
+            ),
+            Container(
+              height: 100,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  _buildCard(),
+                  SizedBox(width: 12),
+                  _buildCard(),
+                  SizedBox(width: 12),
+                  _buildCard(),
+                  SizedBox(width: 12),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Título 2',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              height: 100,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  _buildCard(),
+                  SizedBox(width: 100),
+                  _buildCard(),
+                  SizedBox(width: 12),
+                  _buildCard(),
+                  SizedBox(width: 12),
+                ],
+              ),
+            ),
+          ],
         ),
-      ),
+      ],
     ),
-    Container(color: Colors.green), // Exemplo de outra página
-    Container(color: Colors.red),   // Exemplo de outra página
+    ListView(
+      children: [
+        Container(
+          color: Colors.green,
+          child: Center(
+            child: Text(
+              'Página 2',
+              style: TextStyle(fontSize: 24),
+            ),
+          ),
+        ),
+      ],
+    ),
+    ListView(
+      children: [
+        Container(
+          color: Colors.red,
+          child: Center(
+            child: Text(
+              'Página 3',
+              style: TextStyle(fontSize: 24),
+            ),
+          ),
+        ),
+      ],
+    ),
   ],
 ),
+  
     );
   }
+
+ Widget _buildCard() => Container(
+  width: 200, // Defina a largura igual à altura para fazer o card quadrado
+  height: 200,
+  color: Colors.red,
+  child: Image.network(
+    "https://imgnike-a.akamaihd.net/360x360/027285ID.jpg",
+    fit: BoxFit.cover,
+  ),
+);
+
 
   @override
   void dispose() {
