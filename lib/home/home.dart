@@ -9,21 +9,23 @@ class Product {
   Product({
     required this.name,
     required this.description,
-    required this.price,
+    required this.price, required String category,
   });
+
+  get category => null;
 }
 
 class Home extends StatelessWidget {
   final List<Product> products;
 
-  const Home({Key? key, required this.products}) : super(key: key);
+  const Home({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Catálogo de Produtos'), // Título do AppBar
+          title: const Text('Catálogo de Produtos'), // Título do AppBar
         ),
         body: ListView.builder(
           itemCount: products.length, // Número de itens na lista
@@ -45,7 +47,7 @@ class Home extends StatelessWidget {
                   ],
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.add_shopping_cart), // Ícone para adicionar ao carrinho (exemplo)
+                  icon: const Icon(Icons.add_shopping_cart), // Ícone para adicionar ao carrinho (exemplo)
                   onPressed: () {
                     // Adicionar a lógica para adicionar ao carrinho
                   },
